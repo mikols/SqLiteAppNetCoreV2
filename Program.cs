@@ -11,7 +11,7 @@ namespace SqLiteAppNetCoreV2
 
         public static void Main(string[] args)
         {
-            var rootPath = @"C:\Test";
+            // var rootPath = @"C:\Test";
             List<string> rootPaths = new List<string>();
 
             while (true)
@@ -88,6 +88,19 @@ namespace SqLiteAppNetCoreV2
                         case (int)MenuChoices.ParseDate:
                             Console.WriteLine("Test to Parse Date.");
                             DateExt.TestDateParse();
+                            Console.WriteLine("And now...test to Parse Year.");
+                            DateExt.TestYearParse();
+                            break;
+
+                        case (int)MenuChoices.ParseReso:
+                            Console.WriteLine("Test to Parse Res.");
+                            DateExt.TestResoParse();
+                            break;
+
+                        case (int)MenuChoices.SwapPersons:
+                            Console.WriteLine("Test Swap Persons.");
+                            TestPersons.Test_Part1();
+                            TestPersons.Test_Part2();
                             break;
 
                         case (int)MenuChoices.Exit:

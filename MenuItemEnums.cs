@@ -29,6 +29,12 @@ namespace SqLiteAppNetCoreV2
         
         [Description("Parse Date")]
         ParseDate,
+        
+        [Description("Parse Reso")]
+        ParseReso,
+        
+        [Description("Swap Persons")]
+        SwapPersons,
 
         [Description("Exit")]
         Exit,
