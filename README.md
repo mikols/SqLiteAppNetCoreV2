@@ -1,0 +1,2 @@
+# SqLiteAppNetCoreV2
+test
