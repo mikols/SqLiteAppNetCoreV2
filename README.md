@@ -115,6 +115,6 @@ Explanation:
 XAML Definition: The ListView is defined with two columns: Filesize and File Path.
 Data Model: The FileDetail class represents the file information.
 Code-Behind: The ScanForDuplicateFiles method scans for duplicate files and binds the results to the ListView.
-This setup will display the duplicate files in a WPF ListView, showing their size and full path. Let me know if you need any further assistance or adjustments!
+This setup will display the duplicate files in a WPF ListView, showing their size and full path. 
 
 

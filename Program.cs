@@ -71,8 +71,11 @@ namespace SqLiteAppNetCoreV2
                             foreach(var dir in rootPaths)
                             {
                                 Console.WriteLine(dir);
-                                FindDupes.FindDuplicateFiles(dir);
+                                // FindDupes.FindDuplicateFiles(dir);                                
+                                FindDupes.ScanForDuplicateFiles(dir);                                
                             }
+
+
                             break;
 
                         case (int)MenuChoices.ReadTitles:

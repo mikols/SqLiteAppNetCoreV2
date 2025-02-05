@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 public class FindDupes
 {
@@ -40,7 +42,7 @@ public class FindDupes
 
     public static void FindDuplicateFiles(string rootPath)
     {
-        Console.WriteLine($"Rootparh: {rootPath}");
+        Console.WriteLine($"Rootpath: {rootPath}");
         var allowedExtensions = new HashSet<string> { ".dll", ".exe", ".mp4" };
 
         // string rootPath = @"C:\Your\Directory\Path";
@@ -67,6 +69,49 @@ public class FindDupes
             Console.WriteLine();
         }
     }
+
+    public static void ScanForDuplicateFiles(string rootPath)
+    {
+        var allowedExtensions = new HashSet<string> { ".mp4", ".dll" };
+        var fileGroups = new ConcurrentDictionary<long, List<FileInfo>>();
+
+        var files = Directory.GetFiles(rootPath, "*.*", SearchOption.AllDirectories)
+            .Where(file => allowedExtensions.Contains(Path.GetExtension(file).ToLower()));
+
+        Parallel.ForEach(files, file =>
+        {
+            var fileInfo = new FileInfo(file);
+            fileGroups.AddOrUpdate(fileInfo.Length,
+                new List<FileInfo> { fileInfo },
+                (key, existingList) =>
+                {
+                    existingList.Add(fileInfo);
+                    return existingList;
+                });
+        });
+
+        var duplicateFiles = new List<FileDetail>();
+
+        foreach (var group in fileGroups.Where(g => g.Value.Count > 1))
+        {
+            foreach (var file in group.Value)
+            {
+                duplicateFiles.Add(new FileDetail
+                {
+                    FileSize = group.Key,
+                    FilePath = file.FullName
+                });
+            }
+        }
+
+        // FILELISTVIEW IN XAML
+        // ---- >  FileListView.ItemsSource = duplicateFiles;
+        foreach (var f in duplicateFiles)
+        {
+            Console.WriteLine($"Filesize: {f.FileSize} - Filepath: {f.FilePath}");    
+        }
+    }
+
 
 /*
 
