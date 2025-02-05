@@ -65,6 +65,16 @@ namespace SqLiteAppNetCoreV2
                             FindDirectories.FindDirs(rootPaths);
                              break;
  
+
+                        case (int)MenuChoices.FindDupes:
+                            Console.WriteLine("Find dupes");
+                            foreach(var dir in rootPaths)
+                            {
+                                Console.WriteLine(dir);
+                                FindDupes.FindDuplicateFiles(dir);
+                            }
+                            break;
+
                         case (int)MenuChoices.ReadTitles:
                             Console.WriteLine("You chose to Read data.");
                             SqliteDB.ReadDataFromSqliteDbTable();

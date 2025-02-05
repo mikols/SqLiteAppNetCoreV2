@@ -36,6 +36,9 @@ namespace SqLiteAppNetCoreV2
         [Description("Swap Persons")]
         SwapPersons,
 
+        [Description("Find dupes")]
+        FindDupes,
+        
         [Description("Exit")]
         Exit,
 
