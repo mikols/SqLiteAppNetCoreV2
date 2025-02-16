@@ -27,7 +27,7 @@ XML
 ------------------
 
 
-AI-generated code. Review and use carefully. More info on FAQ.
+
 Create a Data Model:
 Define a class to represent the file information.
 
