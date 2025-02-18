@@ -49,10 +49,10 @@ public class FindDupes
         var files = Directory.GetFiles(rootPath, "*.*", SearchOption.AllDirectories)
             .Where(file => allowedExtensions.Contains(Path.GetExtension(file).ToLower()));
 
-        foreach (var file in files)
-        {
-            Console.WriteLine(file);
-        }
+        // foreach (var file in files)
+        // {
+        //     Console.WriteLine(file);
+        // }
 
         var fileGroups = files
             .Select(file => new FileInfo(file))
@@ -99,7 +99,8 @@ public class FindDupes
                 duplicateFiles.Add(new FileDetail
                 {
                     FileSize = group.Key,
-                    FilePath = file.FullName
+                    FilePath = file.FullName,
+                    FileName = file.Name
                 });
             }
         }
@@ -108,7 +109,7 @@ public class FindDupes
         // ---- >  FileListView.ItemsSource = duplicateFiles;
         foreach (var f in duplicateFiles)
         {
-            Console.WriteLine($"Filesize: {f.FileSize} - Filepath: {f.FilePath}");    
+            Console.WriteLine($"FileName: {f.FileName} Filesize: {f.FileSize} - Filepath: {f.FilePath}");    
         }
     }
 
